@@ -22,6 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 $string['auth_bruteforce_hours'] = 'Quantas horas ficará bloqueado';
 $string['auth_bruteforce_hours_description'] = 'Número de horas que deverá ser considerado na contagem de tempo de bloqueio. Após este tempo poderá tentar novamente.';
 $string['auth_bruteforce_limit'] = 'Número de tentativas antes de bloquear o IP';
