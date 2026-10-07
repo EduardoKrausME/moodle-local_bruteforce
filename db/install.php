@@ -27,6 +27,10 @@ function xmldb_local_bruteforce_install(): void {
     $legacylimit = (int)get_config('auth/bruteforce', 'limit');
     $legacyhours = (int)get_config('auth/bruteforce', 'hours');
 
+    // The old plugin was an authentication method and may still be listed in $CFG->auth after its code is moved.
+    // Disable it before the new local plugin takes over the protection logic.
+    \core\plugininfo\auth::enable_plugin('bruteforce', false);
+
     if ($legacylimit > 0) {
         set_config('iplimit', $legacylimit, 'local_bruteforce');
         set_config('identitylimit', $legacylimit, 'local_bruteforce');
