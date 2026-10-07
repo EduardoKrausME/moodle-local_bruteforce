@@ -24,5 +24,15 @@ jobs:
           repository: EduardoKrausME/moodle-plugin-validate
           path: validator
 
-      - name: Validate plugin
-        run: python3 validator/.chatgpt/run.py --check "$GITHUB_WORKSPACE/plugin"
+      - name: Run finishing pipeline
+        id: finishing
+        continue-on-error: true
+        run: python3 validator/.chatgpt/run.py "$GITHUB_WORKSPACE/plugin"
+
+      - name: Review deterministic changes
+        if: always()
+        run: git -C plugin diff --check && git -C plugin diff
+
+      - name: Propagate validation result
+        if: steps.finishing.outcome != 'success'
+        run: exit 1
