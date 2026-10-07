@@ -15,12 +15,14 @@ jobs:
     steps:
       - name: Checkout plugin
         uses: actions/checkout@v4
+        with:
+          path: plugin
 
       - name: Checkout validator
         uses: actions/checkout@v4
         with:
           repository: EduardoKrausME/moodle-plugin-validate
-          path: .validator
+          path: validator
 
       - name: Validate plugin
-        run: python3 .validator/.chatgpt/run.py --check "$GITHUB_WORKSPACE"
+        run: python3 validator/.chatgpt/run.py --check "$GITHUB_WORKSPACE/plugin"
