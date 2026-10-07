@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="auth/bruteforce/db" VERSION="20120628" COMMENT="bruteforce structure"
+<XMLDB PATH="local/bruteforce/db" VERSION="2026100700" COMMENT="XMLDB file for local_bruteforce"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
     <TABLES>
-        <TABLE NAME="bruteforce_ip" COMMENT="The bruteforce table to store IP Bloqued">
+        <TABLE NAME="local_bruteforce_attempt" COMMENT="Aggregated failed authentication attempts">
             <FIELDS>
-                <FIELD NAME="id"   TYPE="int"  LENGTH="10" NOTNULL="true" SEQUENCE="true" UNSIGNED="false"/>
-                <FIELD NAME="ip"   TYPE="char" LENGTH="40" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="time" TYPE="int"  LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="scope" TYPE="char" LENGTH="16" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="keyhash" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="ip" TYPE="char" LENGTH="45" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="usernamehash" TYPE="char" LENGTH="64" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="attempts" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+                <FIELD NAME="firstattempt" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+                <FIELD NAME="lastattempt" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+                <FIELD NAME="blockeduntil" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
             </KEYS>
+            <INDEXES>
+                <INDEX NAME="scopekey" UNIQUE="true" FIELDS="scope, keyhash"/>
+                <INDEX NAME="lastattempt" UNIQUE="false" FIELDS="lastattempt"/>
+                <INDEX NAME="blockeduntil" UNIQUE="false" FIELDS="blockeduntil"/>
+            </INDEXES>
         </TABLE>
     </TABLES>
 </XMLDB>

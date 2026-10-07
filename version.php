@@ -5,27 +5,19 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version information
+ * Version information for local_bruteforce.
  *
- * @package    auth_bruteforce
- * @copyright  2020 Eduardo Kraus (http://eduardokraus.com)
- * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @package    local_bruteforce
+ * @copyright  2026 Eduardo Kraus {@link https://eduardokraus.com}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2020041500;
-$plugin->requires = 2012050800;
-$plugin->component = 'auth_bruteforce';
+$plugin->component = 'local_bruteforce';
+$plugin->version = 2026100700;
+$plugin->requires = 2022112800;
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.3.2';
+$plugin->release = '2.0.0';

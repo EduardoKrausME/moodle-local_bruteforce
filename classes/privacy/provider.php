@@ -5,34 +5,39 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace auth_bruteforce\privacy;
+namespace local_bruteforce\privacy;
 
-defined('MOODLE_INTERNAL') || die();
+use core_privacy\local\metadata\collection;
 
 /**
- * Privacy implementation for auth_bruteforce.
+ * Privacy metadata provider.
  *
- * @package   auth_bruteforce
- * @copyright 2020 Eduardo Kraus (http://eduardokraus.com)
- * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @package    local_bruteforce
+ * @copyright  2026 Eduardo Kraus {@link https://eduardokraus.com}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class provider implements \core_privacy\local\metadata\null_provider {
+class provider implements \core_privacy\local\metadata\provider {
     /**
-     * Get the language string identifier with the component's language
-     * file to explain why this plugin stores no data.
+     * Describe stored security metadata.
      *
-     * @return string
+     * @param collection $collection Privacy metadata collection.
+     * @return collection
      */
-    public static function get_reason() : string {
-        return 'privacy:metadata';
+    public static function get_metadata(collection $collection): collection {
+        $collection->add_database_table(
+            'local_bruteforce_attempt',
+            [
+                'ip' => 'privacy:metadata:attempt:ip',
+                'usernamehash' => 'privacy:metadata:attempt:usernamehash',
+                'attempts' => 'privacy:metadata:attempt:attempts',
+                'firstattempt' => 'privacy:metadata:attempt:firstattempt',
+                'lastattempt' => 'privacy:metadata:attempt:lastattempt',
+                'blockeduntil' => 'privacy:metadata:attempt:blockeduntil',
+            ],
+            'privacy:metadata:attempt'
+        );
+
+        return $collection;
     }
 }
