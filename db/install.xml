@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/bruteforce/db" VERSION="2026100700" COMMENT="XMLDB file for local_bruteforce"
+<XMLDB PATH="local/bruteforce/db" VERSION="20261007" COMMENT="XMLDB file for local_bruteforce"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
     <TABLES>

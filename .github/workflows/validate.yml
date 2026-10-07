@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   validate:
@@ -32,6 +32,17 @@ jobs:
       - name: Review deterministic changes
         if: always()
         run: git -C plugin diff --check && git -C plugin diff
+
+      - name: Commit deterministic normalization
+        if: always()
+        run: |
+          if ! git -C plugin diff --quiet; then
+            git -C plugin config user.name "github-actions[bot]"
+            git -C plugin config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git -C plugin add -A
+            git -C plugin commit -m "Apply Moodle plugin finishing normalization"
+            git -C plugin push origin HEAD:master
+          fi
 
       - name: Propagate validation result
         if: steps.finishing.outcome != 'success'
