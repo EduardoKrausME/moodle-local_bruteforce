@@ -5,6 +5,11 @@ concurrency:
   cancel-in-progress: false
   queue: max
 
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+  queue: max
+
 on: [push]
 
 permissions:
