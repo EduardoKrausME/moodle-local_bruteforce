@@ -24,6 +24,9 @@
 
 namespace local_bruteforce;
 
+use core\event\user_loggedin;
+use core\event\user_login_failed;
+
 /**
  * Moodle event observers.
  *
@@ -35,10 +38,10 @@ class observer {
     /**
      * Record failed login attempts.
      *
-     * @param \core\event\user_login_failed $event Failed login event.
+     * @param user_login_failed $event Failed login event.
      * @return void
      */
-    public static function user_login_failed(\core\event\user_login_failed $event): void {
+    public static function user_login_failed(user_login_failed $event): void {
         $username = '';
         if (!empty($event->other['username'])) {
             $username = (string)$event->other['username'];
@@ -50,10 +53,10 @@ class observer {
     /**
      * Clear the focused counter after a successful login.
      *
-     * @param \core\event\user_loggedin $event Successful login event.
+     * @param user_loggedin $event Successful login event.
      * @return void
      */
-    public static function user_loggedin(\core\event\user_loggedin $event): void {
+    public static function user_loggedin(user_loggedin $event): void {
         global $DB;
 
         $username = '';

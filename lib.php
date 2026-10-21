@@ -22,6 +22,8 @@
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use local_bruteforce\manager;
+
 /**
  * Guard login requests as early as possible.
  *
@@ -31,5 +33,5 @@
  * @return void
  */
 function local_bruteforce_after_config(): void {
-    \local_bruteforce\manager::guard_request();
+    manager::guard_request();
 }

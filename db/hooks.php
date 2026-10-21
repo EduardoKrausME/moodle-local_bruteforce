@@ -22,11 +22,13 @@
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use core\hook\after_config;
+
 defined('MOODLE_INTERNAL') || die();
 
 $callbacks = [
     [
-        'hook' => \core\hook\after_config::class,
+        'hook' => after_config::class,
         'callback' => 'local_bruteforce\\hook_callbacks::after_config',
         'priority' => 1000,
     ],

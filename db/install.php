@@ -22,6 +22,8 @@
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use core\plugininfo\auth;
+
 /**
  * Install local_bruteforce and migrate legacy auth_bruteforce data when available.
  *
@@ -35,7 +37,7 @@ function xmldb_local_bruteforce_install(): void {
 
     // The old plugin was an authentication method and may still be listed in $CFG->auth after its code is moved.
     // Disable it before the new local plugin takes over the protection logic.
-    \core\plugininfo\auth::enable_plugin('bruteforce', false);
+    auth::enable_plugin('bruteforce', false);
 
     if ($legacylimit > 0) {
         set_config('iplimit', $legacylimit, 'local_bruteforce');

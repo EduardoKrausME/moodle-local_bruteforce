@@ -24,6 +24,9 @@
 
 namespace local_bruteforce\task;
 
+use core\task\scheduled_task;
+use local_bruteforce\manager;
+
 /**
  * Remove expired brute-force counters.
  *
@@ -31,7 +34,7 @@ namespace local_bruteforce\task;
  * @copyright  2026 Eduardo Kraus {@link https://eduardokraus.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class cleanup extends \core\task\scheduled_task {
+class cleanup extends scheduled_task {
     /**
      * Return the task name.
      *
@@ -47,6 +50,6 @@ class cleanup extends \core\task\scheduled_task {
      * @return void
      */
     public function execute(): void {
-        \local_bruteforce\manager::cleanup();
+        manager::cleanup();
     }
 }

@@ -24,6 +24,8 @@
 
 namespace local_bruteforce;
 
+use core\hook\after_config;
+
 /**
  * Hook callbacks.
  *
@@ -35,10 +37,10 @@ class hook_callbacks {
     /**
      * Guard authentication requests after Moodle configuration is loaded.
      *
-     * @param \core\hook\after_config $hook Hook instance.
+     * @param after_config $hook Hook instance.
      * @return void
      */
-    public static function after_config(\core\hook\after_config $hook): void {
+    public static function after_config(after_config $hook): void {
         manager::guard_request();
     }
 }

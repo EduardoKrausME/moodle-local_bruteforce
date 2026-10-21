@@ -24,7 +24,9 @@
 
 namespace local_bruteforce;
 
+use core_text;
 use dml_write_exception;
+use moodle_exception;
 
 /**
  * Brute-force protection manager.
@@ -97,7 +99,7 @@ class manager {
             exit;
         }
 
-        throw new \moodle_exception('blocked', 'local_bruteforce', '', format_time($remaining));
+        throw new moodle_exception('blocked', 'local_bruteforce', '', format_time($remaining));
     }
 
     /**
@@ -296,7 +298,7 @@ class manager {
             return '';
         }
 
-        return hash('sha256', \core_text::strtolower($username));
+        return hash('sha256', core_text::strtolower($username));
     }
 
     /**
